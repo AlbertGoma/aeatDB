@@ -1,0 +1,33 @@
+DROP TABLE IF EXISTS `factura`;
+
+CREATE TABLE `factura` (
+  `idFactura` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `idProveidor` int(10) unsigned NOT NULL,
+  `ref` varchar(45) NOT NULL,
+  `data` date NOT NULL,
+  `import` decimal(10,2) NOT NULL,
+  `idDivisa` tinyint(3) unsigned NOT NULL,
+  `baseImp` decimal(10,2) NOT NULL,
+  `iva` tinyint(1) NOT NULL,
+  `idTipusIva` tinyint(3) unsigned NOT NULL,
+  `esServei` tinyint(1) NOT NULL,
+  `idComprador` int(10) unsigned NOT NULL,
+  `idIrpf` int(11) NOT NULL DEFAULT '0',
+  `idAmort` int(11) NOT NULL,
+  `esUsat` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`idFactura`),
+  UNIQUE KEY `idx_facturaUq` (`idProveidor`,`ref`) USING BTREE,
+  KEY `fk_factura_proveidor_idx` (`idProveidor`),
+  KEY `idx_data` (`data`) USING BTREE,
+  KEY `fk_factura_divisa1_idx` (`idDivisa`),
+  KEY `fk_factura_tipusIva1_idx` (`idTipusIva`),
+  KEY `fk_factura_proveidor1_idx` (`idComprador`),
+  KEY `fk_factura_irpf_idx` (`idIrpf`),
+  KEY `fk_factura_amort_idx` (`idAmort`),
+  CONSTRAINT `fk_factura_amort` FOREIGN KEY (`idAmort`) REFERENCES `amort` (`idAmort`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_factura_comprador` FOREIGN KEY (`idComprador`) REFERENCES `proveidor` (`idProveidor`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_factura_divisa1` FOREIGN KEY (`idDivisa`) REFERENCES `divisa` (`idDivisa`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_factura_irpf` FOREIGN KEY (`idIrpf`) REFERENCES `irpf` (`idIrpf`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_factura_tipusIva1` FOREIGN KEY (`idTipusIva`) REFERENCES `tipusIva` (`idTipusIva`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_factura_venedor` FOREIGN KEY (`idProveidor`) REFERENCES `proveidor` (`idProveidor`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
