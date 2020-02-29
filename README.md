@@ -1,2 +1,2 @@
 # aeatDB
-Quick and dirty invoice database to fill in spanish tax forms.
+Quick and dirty invoice database for MariaDB and MySQL to fill in spanish tax forms.
