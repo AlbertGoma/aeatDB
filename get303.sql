@@ -127,3 +127,4 @@ BEGIN
           entrUe                    'Entregas Intrac. [59]',
           export                    'Exportaciones [60]';
 END ;;
+DELIMITER ;
