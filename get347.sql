@@ -156,9 +156,7 @@ BEGIN
   SET t.import1T = pt.imp, t.import2T = st.imp, t.import3T = tt.imp, t.import4T = qt.imp
   WHERE t.claveOp = 'B';
 
-
-	SELECT * from tbl347;
-	DROP TABLE tbl347;
-
+  SELECT * from tbl347;
+  DROP TABLE tbl347;
 END ;;
 DELIMITER ;
