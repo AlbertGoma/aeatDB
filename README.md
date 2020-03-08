@@ -10,7 +10,7 @@ Create a database and import the SQL files to it with administrator privileges:
 $ echo "CREATE DATABASE 'aeatdb' DEFAULT CHARACTER SET utf8; USE aeatdb; " | cat - *.sql | mysql -u root -p
 ```
 
-Put your Fiscal Identity Number/VAT Number (NIF) in the *config* table and the currencies and countries you trade with in the *divisa*, and *pais* tables. The *ue* column represents whether that country is in the European Union. Put also the different VAT rates on the *tipusIVA* table:
+Put your Fiscal Identification Number/VAT Number (NIF) in the *config* table and the currencies and countries you trade with in the *divisa*, and *pais* tables. The *ue* column represents whether that country is in the European Union. Put also the different VAT rates on the *tipusIVA* table:
 
 ```sql
 INSERT INTO config (k, v) VALUES ('NIF', '00000000-X');
