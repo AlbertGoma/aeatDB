@@ -29,6 +29,8 @@ BEGIN
   GROUP BY v.idProveidor
   HAVING bi  >=  3005.06;
 
+  SET SQL_SAFE_UPDATES = 0;
+
   UPDATE tbl347 t
   LEFT JOIN (
     SELECT v.idProveidor id, SUM(f.baseImp + (f.baseImp * f.iva * i.tipus)) imp
@@ -84,7 +86,6 @@ BEGIN
     ) as qt ON t.id = qt.id
   SET t.import1T = pt.imp, t.import2T = st.imp, t.import3T = tt.imp, t.import4T = qt.imp
   WHERE t.claveOp = 'A';
-
 
   INSERT INTO tbl347 (id, pais, nif, raoSocial, importAnual, claveOp)
   SELECT c.idProveidor, pc.iso, c.nif, c.raoSocial, ROUND(SUM(f.baseImp + (f.baseImp * f.iva * i.tipus)), 2) bi, 'B'
@@ -155,6 +156,8 @@ BEGIN
     ) as qt ON t.id = qt.id
   SET t.import1T = pt.imp, t.import2T = st.imp, t.import3T = tt.imp, t.import4T = qt.imp
   WHERE t.claveOp = 'B';
+
+  SET SQL_SAFE_UPDATES = 1;
 
   SELECT * from tbl347;
   DROP TABLE tbl347;
