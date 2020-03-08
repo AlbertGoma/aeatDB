@@ -14,20 +14,7 @@ BEGIN
           importacioQ,                -- Casella 33
           importExempt decimal(10,2); -- Casella 61
 
-  CASE trimestre
-    WHEN 1 THEN
-      SET inici  :=  date(concat(exercici, '-01-01')),
-          fi     :=  date(concat(exercici, '-03-31'));
-    WHEN 2 THEN
-      SET inici  :=  date(concat(exercici, '-04-01')),
-          fi     :=  date(concat(exercici, '-06-30'));
-    WHEN 3 THEN
-      SET inici  :=  date(concat(exercici, '-07-01')),
-          fi     :=  date(concat(exercici, '-09-30'));
-    WHEN 4 THEN
-      SET inici  :=  date(concat(exercici, '-10-01')),
-          fi     :=  date(concat(exercici, '-12-31'));
-  END CASE;
+  CALL periode(exercici, trimestre, inici, fi);
 
   SELECT sum(baseImp)
   INTO regGral
