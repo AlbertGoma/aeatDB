@@ -37,7 +37,7 @@ When you receive or issue an invoice add it to the *factura* table, if the selle
 | import | **Total** amount of the invoice **before taxes** in **its own currency**. |
 | idDivisa | *idDivisa* value in the *divisa* table corresponding to the **invoice's currency**. |
 | baseImp | **Total** value of the invoice **before taxes** in **your currency** at the time of payment. |
-| iva | **True** when invoice **includes VAT** or for **goods imports**, **False** when it doesn't. |
+| iva | **True** when invoice **includes VAT** or for **goods imports**, **False** when it doesn't (e.g. between companies of two different EU member states). |
 | idTipusIva | *idTipusIva* value in the *tipusIva* table corresponding to the **VAT rate of the products** on the invoice. |
 | esServei | **True** if the invoiced items are **services**, **False** if they are **goods**. |
 
