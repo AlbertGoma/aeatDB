@@ -7,7 +7,8 @@ Quick and dirty™ invoice database with stored procedures for MariaDB/MySQL tha
 Create a database and import the SQL files to it with administrator privileges:
 
 ```sh
-$ echo "CREATE DATABASE 'aeatdb' DEFAULT CHARACTER SET utf8; USE aeatdb; " | cat - *.sql | mysql -u root -p
+$ echo "CREATE DATABASE 'aeatdb' DEFAULT CHARACTER SET utf8; USE aeatdb; SET FOREIGN_KEY_CHECKS=0; " | \
+> cat - *.sql | mysql -u root -p
 ```
 
 Put your Fiscal Identification Number/VAT Number (NIF) in the *config* table and the currencies and countries you trade with in the *divisa*, and *pais* tables. The *ue* column represents whether that country is in the European Union. Put also the different VAT rates on the *tipusIVA* table:
